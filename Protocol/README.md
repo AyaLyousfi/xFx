@@ -2,14 +2,15 @@
 The client opens a connection with the server and *informs* the server whether it wants to *download* or *upload* a file using a *header*.
 
 ## Download
-If the client wants to download a file, then the header will be as the following:
-- **download[one space][file name][Line Feed]**
-
+If the client wants to download a file, It checks if it has a file with the same name; 
+- If it does, then the header will be as the following:
+  **download[one space][file name][one space][checksum value][Line Feed]**   
 Upon receiving this header, the server searches for the specified file.
 - If the file is not found, then the server shall reply with a header as the following:
   - **NOT[one space]FOUND[Line Feed]**
-- If the file is found, then the server shall reply
-  - with a header as the following:
+- If the file is found, the server shall reply with the following header if it has an equal checksum value as the client:
+  - **DUPLICATED[Line Feed]**
+- Else, it shall reply with download with a header as the following:
     - **OK[one space][file size][Line Feed]**
   - followed by the bytes of the file
 		
@@ -41,7 +42,7 @@ Upon receiving this header, then the server searches for the file specified file
 - If the file is found, then the server shall reply with a header as provided below:
    -**RESUME[one space]DOWNLOAD[one space][file size][Line Feed]**
   - followed by the remaning bytes needed to download the whole file.
-  - 
+    
   
 
    
