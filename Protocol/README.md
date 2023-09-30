@@ -20,9 +20,9 @@ If the client wants to upload a file, then the header will be as the following:
 
 After sending the header, the client shall send the bytes of the file
 
-## Get Shareable Files
+## Get List
 If the client wants to get list of files shareable by server, then the header will be as following:
-- **shareable[one space]files[Line Feed]**
+- **getList[Line Feed]**
 When the server receives this header, it searches for the list of shareable files.
 - If there are no files shared files, then the server shall reply with the follwing header:
   - **NO[one space]SHAREABLE[one space]FILES[Line Feed]**
@@ -32,7 +32,7 @@ When the server receives this header, it searches for the list of shareable file
   -**SHAREABLE[one space]FILES[one space][Line Feed][list]**
   - Then, the client shall parse the received list from the server.
    
-## Resume The Downloading
+## Resume
 If the client wants to resume the downloading of a file where it stops, in case there was a network connectivity issue, then the header will be as following:
 -**resume[one space]download[one space][file name][one space][downloded bytes][Line Feed]**
 
