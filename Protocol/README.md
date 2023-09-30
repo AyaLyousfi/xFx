@@ -26,11 +26,10 @@ If the client wants to get list of files shareable by server, then the header wi
 When the server receives this header, it searches for the list of shareable files.
 - If there are no files shared files, then the server shall reply with the follwing header:
   - **NO[one space]SHAREABLE[one space]FILES[Line Feed]**
-- If it exists, then the server shall return a list of these file names through the Socket API. Afterward, the client shall parse the received list from the server.
-  **this can be chabged to**
--  If there are shareable files, then the server shall reply with a header as following:
-  -**SHAREABLE[one space]FILES[one space][Line Feed][list]**
-  - Then, the client shall parse the received list from the server.
+- If it exists, the server shall reply with the following header:
+  - **OK[Line Feed]**
+  - then the server returns a list of these file names through the Socket API. Afterward, the client shall parse the received list from the server.
+  
    
 ## Resume
 If the client wants to resume the downloading of a file where it stops, in case there was a network connectivity issue, then the header will be as following:
