@@ -3,17 +3,17 @@ The client opens a connection with the server and *informs* the server whether i
 
 ## Download
 If the client wants to download a file, It checks if it has a file with the same name; 
-- If it does, then the header will be as the following:
-  **download[one space][file name][one space][checksum value][Line Feed]**   
+- If it does, then the client will display a message asking the end user to use the check command in order to check if the two files has the same content.
+- If not, then the header will be as following:
+  - **download[one space][file name][Line Feed]**   
 Upon receiving this header, the server searches for the specified file.
 - If the file is not found, then the server shall reply with a header as the following:
   - **NOT[one space]FOUND[Line Feed]**
-- If the file is found, the server shall reply with the following header if it has an equal checksum value as the client:
-  - **DUPLICATED[Line Feed]**
-- Else, it shall reply with download with a header as the following:
+- If the file is found, then the server shall reply
+  - with a header as the following:
     - **OK[one space][file size][Line Feed]**
   - followed by the bytes of the file
-		
+
 ## Upload
 If the client wants to upload a file, then the header will be as the following:
 - **upload[one space][file name][one space][file size][Line Feed]**
@@ -43,6 +43,20 @@ Upon receiving this header, then the server searches for the file specified file
 - If the file is found, then the server shall reply with a header as provided below:
   - **RESUME[one space][file size][Line Feed]**
   - followed by the remaning bytes needed to download the whole file.
+
+## Check
+If the client want to check if it is downloading the same file or not, it sends the following header to the server:
+ - **check[one space][fileName][one space][clientChecksum][Line Feed]**
+Upon receiving this header, the server searches for the specified file.
+- If the file is not found, then the server shall reply with a header as the following:
+  - **NOT[one space]FOUND[Line Feed]**
+- If the file is found, the server shall reply with the following header if it has an equal checksum value as the client:
+  - **DUPLICATED_FILE[Line Feed]**
+- Else, it shall reply with download with a header as the following:
+  - **NOT_SAME[one space][file size][Line Feed]**
+  - followed by the bytes of the file
+    
+   
     
   
 
