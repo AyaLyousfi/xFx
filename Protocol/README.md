@@ -33,13 +33,13 @@ When the server receives this header, it searches for the list of shareable file
    
 ## Resume
 If the client wants to resume the downloading of a file where it stops, in case there was a network connectivity issue, then the header will be as following:
--**resume[one space]download[one space][file name][one space][downloded bytes][Line Feed]**
+-**resume[one space][file name][one space][downloded bytes][Line Feed]**
 
 Upon receiving this header, then the server searches for the file specified file.
 - If the file is not found, then the server shall reply with the following header:
-   -**NOT[one space]FOUND[Line Feed]**
+  -**NOT[one space]FOUND[Line Feed]**
 - If the file is found, then the server shall reply with a header as provided below:
-   -**RESUME[one space]DOWNLOAD[one space][file size][Line Feed]**
+  -**RESUME[one space][file size][Line Feed]**
   - followed by the remaning bytes needed to download the whole file.
     
   
